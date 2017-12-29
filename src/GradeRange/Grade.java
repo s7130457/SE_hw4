@@ -7,13 +7,24 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-import boundary.letterGradeByboundaryTest;
+import boundary.letterGradeByBoundaryTest;
 
 import Partitioning.letterGradeByPartitioningTest;
-import boundary.letterGradeByboundaryTest;
+import boundary.letterGradeByBoundaryTest;
 
-public class Grade {
-	public static void main(String[] args) throws IOException {
+public class Grade { 
+	public static void main(String[] args) throws IOException { 
+		//先跑全部的測試
+		Result result = JUnitCore.runClasses(letterGradeByBoundaryTest.class,
+				letterGradeByPartitioningTest.class);
+
+		for (Failure failure : result.getFailures()) {
+			System.out.println(failure.toString());
+		}
+
+		System.out.println(result.wasSuccessful());
+		
+		//給使用者輸入input
 		Scanner sc = new Scanner(System.in); 
 		while(true) {
 			System.out.print("Enter a grade:"); 
@@ -25,6 +36,8 @@ public class Grade {
 			int grade = Integer.parseInt(input);
 			System.out.println("your letterGrade is : "+letterGrade(grade)); 
 		}
+		
+		
 	}
 
 	public static char letterGrade(int score) {
@@ -43,12 +56,5 @@ public class Grade {
 			grade = 'F';
 		return grade;
 	}
-/*Result result = JUnitCore.runClasses(letterGradeByboundaryTest.class,
-				letterGradeByPartitioningTest.class);
-
-		for (Failure failure : result.getFailures()) {
-			System.out.println(failure.toString());
-		}
-
-		System.out.println(result.wasSuccessful());*/
+/**/
 }
