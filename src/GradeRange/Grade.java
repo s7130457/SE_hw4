@@ -18,8 +18,10 @@ public class Grade {
 		while(true) {
 			System.out.print("Enter a grade:"); 
 			String input=  sc.nextLine(); 
-			if(input=="exit")
-				break;
+			if(input.equals("exit")){
+				System.exit(0);				
+				sc.close();
+			}
 			int grade = Integer.parseInt(input);
 			System.out.println("your letterGrade is : "+letterGrade(grade)); 
 		}
