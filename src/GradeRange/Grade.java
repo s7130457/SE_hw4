@@ -12,9 +12,10 @@ import boundary.letterGradeByBoundaryTest;
 import Partitioning.letterGradeByPartitioningTest;
 import boundary.letterGradeByBoundaryTest;
 
-public class Grade { 
-	public static void main(String[] args) throws IOException { 
-		//先跑全部的測試
+public class Grade {
+	public static void main(String[] args) {
+		// 先跑全部的測試
+
 		Result result = JUnitCore.runClasses(letterGradeByBoundaryTest.class,
 				letterGradeByPartitioningTest.class);
 
@@ -23,38 +24,22 @@ public class Grade {
 		}
 
 		System.out.println(result.wasSuccessful());
-		
-		//給使用者輸入input
-		Scanner sc = new Scanner(System.in); 
-		while(true) {
-			System.out.print("Enter a grade:"); 
-			String input=  sc.nextLine(); 
-			if(input.equals("exit")){
-				System.exit(0);				
-				sc.close();
+
+		// 給使用者輸入input
+		Scanner sc = new Scanner(System.in);
+
+		while (true) {
+			System.out.print("Enter a grade:");
+			String input = sc.nextLine();
+			if (input.equals("exit")) {
+				break; 
 			}
 			int grade = Integer.parseInt(input);
-			System.out.println("your letterGrade is : "+letterGrade(grade)); 
+			System.out.println("your letterGrade is : "
+					+ LetterGrade.letterGrade(grade));
 		}
-		
-		
+		sc.close();
+
 	}
 
-	public static char letterGrade(int score) {
-		char grade;
-		if (score < 0 || score > 100) 
-			grade = 'X';
-		else if (score >= 90 && score <= 100)
-			grade = 'A';
-		else if (score >= 80 && score < 90)
-			grade = 'B';
-		else if (score >= 70 && score < 80)
-			grade = 'C';
-		else if (score >= 60 && score < 70)
-			grade = 'D';
-		else
-			grade = 'F';
-		return grade;
-	}
-/**/
 }
